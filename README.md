@@ -76,6 +76,10 @@ demo potentiomètre : https://youtube.com/shorts/OiS3O_y36lI?si=UCZo8YOwirU1KfvI
 
 demo PUSH : https://youtube.com/shorts/ite0CF_G5eA?si=iyyBnj-L_NNrXcb9
 
+lien Figma Sitemap : https://www.figma.com/board/EoHtjldDFOCimyhLu2JrlJ/Untitled?node-id=0-1&t=gPljIzasLyG0bYLP-1
+
+lien Figma : https://www.figma.com/design/8FRk0E1PpCh0RmFH7uFkfh/Untitled?node-id=0-1&t=CO4gW5egaQLRZE6n-1
+
 
 
 
