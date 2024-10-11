@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Push Button & LED Control</title>
+    <link rel="stylesheet" href="style_site.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <img src="images/Hello-Kitty.png" alt="Hello Kitty" class="logo-icon">
+            <h1><a href="site.html">EMILIE JIANG</a></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="led.html">LED CONTROL</a></li>
+                <li><a href="potentiometer.html">POTENTIOMETER</a></li>
+                <li><a href="push.html">PUSH</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main>
+        <h2>PUSH THE BUTTON FOR THE SURPRISE</h2>
+
+        <!-- Button State Section -->
+        <div class="button-section">
+            <span id="buttonState"></span></p>
+            <span id="ledState"></span></p>
+        </div>
+
+        <!-- Halloween Image Section -->
+        <div id="halloweenImageContainer" style="display: none;">
+            <img src="images/HK.halloween.png" alt="Hello Kitty Halloween" class="halloween-img">
+        </div>
+
+        <!-- Control Section -->
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <a href="https://www.linkedin.com/in/emilie-jiang-841147212" target="_blank">
+            <img src="images/linkedin.png" alt="LinkedIn">
+        </a>
+        <a href="https://www.instagram.com/emiliejng_" target="_blank">
+            <img src="images/insta.png" alt="Instagram">
+        </a>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+        var socket = new WebSocket('ws://10.1.224.24/'); // Update to the correct IP address
+        var ledState = false; // Track the LED state locally
+
+        socket.onmessage = function(event) {
+            var message = event.data;
+
+            // Update the button state based on the message received
+            if (message === 'BUTTON_PRESSED') {
+                document.getElementById('buttonState').innerText = "  ";
+                document.getElementById('halloweenImageContainer').style.display = "block"; // Show image
+            } else if (message === 'BUTTON_RELEASED') {
+                document.getElementById('buttonState').innerText = "  ";
+                document.getElementById('halloweenImageContainer').style.display = "none"; // Hide image
+            } else if (message.includes('LED')) {
+                // Update LED state message from the server
+                document.getElementById('ledState').innerText = message.includes('ON') ? "On" : "Off";
+            }
+        };
+
+        // Function to toggle LED
+        function toggleLED() {
+            if (ledState) {
+                socket.send('LED_OFF'); // Turn off LED
+            } else {
+                socket.send('LED_ON'); // Turn on LED
+            }
+            ledState = !ledState; // Toggle the state locally
+        }
+    </script>
+</body>
+</html>

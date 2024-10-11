@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emilie Jiang's Portfolio</title>
+    <title>Potentiometer Control</title>
     <link rel="stylesheet" href="style_site.css">
 </head>
 <body>
@@ -24,12 +24,10 @@
 
     <!-- Main Content Section -->
     <main>
-        <div class="computer-chip-container">
-            <img src="images/ordi.png" alt="Pixel Art Computer" class="computer">
-            <div class="wire"></div>
+        <h2>Potentiometer Reading</h2>
+        <div>
+            <p id="potValue">Value: 0</p>
         </div>
-
-
     </main>
 
     <!-- Footer Section -->
@@ -43,15 +41,11 @@
     </footer>
 
     <script>
-        var socket = new WebSocket('ws://10.1.224.24/');
+        var socket = new WebSocket('ws://10.1.224.24/'); // Use the correct IP address here
 
         socket.onmessage = function(event) {
-            document.getElementById('status').innerText = event.data;
+            document.getElementById('potValue').innerText = "Value: " + event.data;
         };
-
-        function sendCommand(command) {
-            socket.send(command);
-        }
     </script>
 </body>
 </html>
